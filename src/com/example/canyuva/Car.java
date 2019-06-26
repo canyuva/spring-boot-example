@@ -7,18 +7,18 @@ public interface Car {
 
 class Volvo implements  Car{
 
-    private EngineCreator ec;
+    //private EngineCreator ec;
 
     @Override
     public void setEngine(String s) {
         if(s.equals("diesel")){
             System.out.println("Car : Volvo");
-            ec = EngineCreator.getEngineInst(new DieselEngine());
-            ec.callEngine();
+            EngineCreator.INSTANCE.createEngine(new DieselEngine());
+            EngineCreator.INSTANCE.callEngine();
         }else{
             System.out.println("Car : Volvo");
-            ec = EngineCreator.getEngineInst(new GasolineEngine());
-            ec.callEngine();
+            EngineCreator.INSTANCE.createEngine(new GasolineEngine());
+            EngineCreator.INSTANCE.callEngine();
         }
     }
 }
@@ -26,18 +26,18 @@ class Volvo implements  Car{
 
 class Mercedes implements  Car{
 
-    private EngineCreator ec;
+    //private EngineCreator ec;
 
     @Override
     public void setEngine(String s) {
         if(s.equals("diesel")){
             System.out.println("Car : Mercedes");
-            ec = EngineCreator.getEngineInst(new DieselEngine());
-            ec.callEngine();
+            EngineCreator.INSTANCE.createEngine(new GasolineEngine());
+            EngineCreator.INSTANCE.callEngine();
         }else{
             System.out.println("Car : Mercedes");
-            ec = EngineCreator.getEngineInst(new GasolineEngine());
-            ec.callEngine();
+            EngineCreator.INSTANCE.createEngine(new GasolineEngine());
+            EngineCreator.INSTANCE.callEngine();
         }
     }
 }

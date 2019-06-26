@@ -1,20 +1,20 @@
 package com.example.canyuva;
 
-public class EngineCreator {
+enum EngineCreator {
+
+    INSTANCE;
+
     private Engine _engine;
     private static EngineCreator ec = null;
 
     private EngineCreator(){}
-    private EngineCreator(Engine engine){
+
+    public void createEngine(Engine engine){
         this._engine = engine;
     }
 
     public static EngineCreator getEngineInst(Engine engine){
-        if(ec == null){
-            ec = new EngineCreator(engine);
-        }
-
-        return ec;
+        return INSTANCE;
     }
 
     public void callEngine(){
