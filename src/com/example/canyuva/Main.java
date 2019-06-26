@@ -13,10 +13,10 @@ public class Main {
 
         switch (sc.nextInt()){
             case 1:
-                cc = cc.getCarInst(new Volvo());
+               CarCreator.INSTANCE.createCar(new Volvo());
                 break;
             case 2:
-                cc = cc.getCarInst(new Mercedes());
+                CarCreator.INSTANCE.createCar(new Mercedes());
                 break;
 
                 default:
@@ -29,10 +29,10 @@ public class Main {
 
         switch (sc.nextInt()){
             case 1:
-                cc.selectEngine(1);
+                CarCreator.INSTANCE.selectEngine(1);
                 break;
             case 2:
-                cc.selectEngine(2);
+                CarCreator.INSTANCE.selectEngine(2);
                 break;
 
             default:

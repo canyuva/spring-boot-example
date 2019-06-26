@@ -5,7 +5,6 @@ enum EngineCreator {
     INSTANCE;
 
     private Engine _engine;
-    private static EngineCreator ec = null;
 
     private EngineCreator(){}
 
@@ -13,7 +12,7 @@ enum EngineCreator {
         this._engine = engine;
     }
 
-    public static EngineCreator getEngineInst(Engine engine){
+    public static EngineCreator getEngineInst(){
         return INSTANCE;
     }
 
