@@ -1,9 +1,5 @@
 package com.example.canyuva;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.util.Scanner;
 
 public class App 
@@ -11,10 +7,7 @@ public class App
     @SuppressWarnings("resource")
     public static void main(String[] args) {
 
-        // loading the definitions from the given XML file
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
-        CarCreator app = context.getBean(CarCreator.class);
+        CarCreator cc = CarCreator.getInstance();
 
         Scanner sc = new Scanner(System.in);
 
@@ -22,10 +15,10 @@ public class App
 
         switch (sc.nextInt()){
             case 1:
-                app.createCar(new Volvo());
+                cc.selectCar(1);
                 break;
             case 2:
-                app.createCar(new Mercedes());
+                cc.selectCar(2);
                 break;
 
             default:
@@ -38,10 +31,10 @@ public class App
 
         switch (sc.nextInt()){
             case 1:
-                app.selectEngine(1);
+                cc.selectEngine(1);
                 break;
             case 2:
-                app.selectEngine(2);
+                cc.selectEngine(2);
                 break;
 
             default:
