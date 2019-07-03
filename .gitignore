@@ -1,4 +1,4 @@
-out/
-.idea
+# Created by .ignore support plugin (hsz.mobi)
 target/
-*.iml
+/DepInjectApp.iml
+/.idea/
