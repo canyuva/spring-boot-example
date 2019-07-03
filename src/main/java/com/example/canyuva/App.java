@@ -1,19 +1,31 @@
 package com.example.canyuva;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
 import java.util.Scanner;
 
-public class App 
-{
+@Configuration
+@ComponentScan
+public class App {
+
+    private static ApplicationContext applicationContext;
+
+
     @SuppressWarnings("resource")
     public static void main(String[] args) {
 
-        CarCreator cc = CarCreator.getInstance();
+        applicationContext = new AnnotationConfigApplicationContext(App.class);
 
         Scanner sc = new Scanner(System.in);
 
+        CarCreator cc = applicationContext.getBean(CarCreator.class);
+
         System.out.println("Choose a car... \n 1- Volvo \n 2- Mercedes");
 
-        switch (sc.nextInt()){
+        switch (sc.nextInt()) {
             case 1:
                 cc.selectCar(1);
                 break;
@@ -29,7 +41,7 @@ public class App
 
         System.out.println("Choose an engine... \n 1- Diesel \n 2- Gasoline");
 
-        switch (sc.nextInt()){
+        switch (sc.nextInt()) {
             case 1:
                 cc.selectEngine(1);
                 break;

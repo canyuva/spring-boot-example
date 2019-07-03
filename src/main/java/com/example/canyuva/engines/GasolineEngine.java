@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 @Primary
 public class GasolineEngine implements Engine{
 
-    private String name;
-
     @Override
     public String getName() {
         return "Gasoline";
