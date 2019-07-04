@@ -12,6 +12,4 @@ public class GasolineEngine implements Engine{
         return "Gasoline";
     }
 
-
-
 }
