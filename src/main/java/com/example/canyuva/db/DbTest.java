@@ -1,6 +1,9 @@
 package com.example.canyuva.db;
 
+import com.example.canyuva.dto.Car;
 import com.example.canyuva.dto.Engine;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,38 +20,63 @@ import java.util.List;
 @ComponentScan
 public class DbTest {
 
-    private static AnnotationConfigApplicationContext app;
+    @Autowired
+    private static ApplicationContext app;
     private static DataSource ds;
     private static Connection conn;
-    private static Statement stmt;
 
     public static Connection connectDb() throws SQLException {
         app = new AnnotationConfigApplicationContext(DbConfig.class);
-        ds = app.getBean("getDataSource",DataSource.class);
+        ds = app.getBean("dataSource", DataSource.class);
         conn = ds.getConnection();
         return conn;
     }
 
 
-    public static List<Engine> getEngineList() throws SQLException {
-        conn = connectDb();
-        stmt = conn.createStatement();
-        String sql = "SELECT * FROM ENGINE";
-        ResultSet rs = stmt.executeQuery(sql);
+    public static List<Engine> getEngineList() {
         List<Engine> engineList = new ArrayList<>();
-
-        while(rs.next()){
-            Engine e = new Engine();
-            e.setId(rs.getInt(1));
-            e.setType(rs.getString(2));
-            engineList.add(e);
+        try (Connection conn = connectDb();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM ENGINE")) {
+            while (rs.next()) {
+                Engine e = new Engine();
+                e.setId(rs.getInt(1));
+                e.setType(rs.getString(2));
+                engineList.add(e);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return engineList;
     }
 
-    public static void main(String[] args) throws SQLException {
-        for (Engine e: getEngineList()) {
-            System.out.println(e.getId()+"  "+e.getType());
+    public static List<Car> getCarList() {
+
+        List<Car> carList = new ArrayList<>();
+        try (Connection conn = connectDb();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM CAR")) {
+            while (rs.next()) {
+                Car c = new Car();
+                c.setId(rs.getInt(1));
+                c.setBrand(rs.getString(2));
+                int engineIndex = rs.getInt(3);
+                Engine e = getEngineList().stream().filter(x -> x.getId() == engineIndex).findAny().get();
+                c.setEngine(e);
+                c.setYear(rs.getInt(4));
+                carList.add(c);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return carList;
+    }
+
+    public static void main(String[] args) {
+        for (Car c : getCarList()) {
+            System.out.println(c.getId() + " | " + c.getBrand() + " | " + c.getEngine() + " | " + c.getYear() + "\n");
+        }
+
+
     }
 }
