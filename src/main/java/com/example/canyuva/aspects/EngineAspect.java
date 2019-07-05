@@ -13,7 +13,7 @@ public class EngineAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(EngineAspect.class);
 
-    @Before("execution(* com.example.canyuva.cars.Car.setEngine(..))")
+    @Before("execution(* com.example.canyuva.dto.Car.setEngine(..))")
     public void beforeSelectEngine(JoinPoint joinPoint) {
         logger.info(joinPoint.getSignature().getName() + " method called!");
         logger.info("Engine injected!");

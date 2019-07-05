@@ -1,5 +1,7 @@
 package com.example.canyuva;
 
+import com.example.canyuva.dto.Car;
+import com.example.canyuva.dto.Engine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -17,13 +19,12 @@ public class App {
 
     private static ApplicationContext applicationContext;
     private static final Logger logger = LoggerFactory.getLogger(App.class);
-
+    private static Car car;
+    private static Engine engine;
 
 
     @SuppressWarnings("resource")
     public static void main(String[] args) {
-
-
 
         applicationContext = new AnnotationConfigApplicationContext(App.class);
 
@@ -31,14 +32,17 @@ public class App {
 
         CarCreator cc = applicationContext.getBean(CarCreator.class);
 
-        logger.debug("\nChoose a car... \n 1- Volvo \n 2- Mercedes");
+        car = new Car();
+        engine = new Engine();
+
+        logger.debug("\nChoose a brand... \n 1- Volvo \n 2- Mercedes");
 
         switch (sc.nextInt()) {
             case 1:
-                cc.selectCar(1);
+                car.setBrand("Volvo");
                 break;
             case 2:
-                cc.selectCar(2);
+                car.setBrand("Mercedes");
                 break;
 
             default:
@@ -51,16 +55,27 @@ public class App {
 
         switch (sc.nextInt()) {
             case 1:
-                cc.selectEngine(1);
+                //
+                car.setEngine(new Engine());
                 break;
             case 2:
-                cc.selectEngine(2);
+                //
+                car.setEngine(new Engine());
                 break;
 
             default:
                 logger.error("Unexpected input!");
                 break;
         }
+
+        logger.debug("\nSet the year...");
+
+        if(sc.nextInt() <= 2019){
+            car.setYear(sc.nextInt());
+        }else{
+            logger.error("The year must be smaller than 2019");
+        }
+
 
     }
 

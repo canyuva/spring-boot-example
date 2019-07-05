@@ -1,4 +1,4 @@
-package com.example.canyuva;
+package com.example.canyuva.db;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ public class DbConfig {
     public DataSource getDataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:http://localhost/~/test");
+        dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         return dataSource;
