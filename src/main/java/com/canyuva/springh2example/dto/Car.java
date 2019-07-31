@@ -1,7 +1,6 @@
 package com.canyuva.springh2example.dto;
 
 import org.springframework.stereotype.Component;
-import com.canyuva.springh2example.dto.*;
 @Component
 public class Car {
     private int id;
@@ -39,6 +38,14 @@ public class Car {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString(){
+        return "ID : " + getId() + "\n" +
+                "BRAND : " + getBrand() + "\n" +
+                "ENGINE : " + getEngine().getType() + "\n" +
+                "YEAR : " + getYear() +"\n --------";
     }
 }
 
