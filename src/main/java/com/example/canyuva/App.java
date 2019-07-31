@@ -4,6 +4,7 @@ import com.example.canyuva.dto.Car;
 import com.example.canyuva.dto.Engine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,8 +14,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import java.util.Scanner;
 
 @Configuration
-@ComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@SpringBootApplication
 public class App {
 
     private static ApplicationContext applicationContext;
