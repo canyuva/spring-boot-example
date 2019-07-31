@@ -1,4 +1,4 @@
-package com.example.canyuva.aspects;
+package com.canyuva.springh2example.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,7 +13,7 @@ public class EngineAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(EngineAspect.class);
 
-    @Before("execution(* com.example.canyuva.dto.Car.setEngine(..))")
+    @Before("execution(* com.canyuva.springh2example.dto.Car.setEngine(..))")
     public void beforeSelectEngine(JoinPoint joinPoint) {
         logger.info(joinPoint.getSignature().getName() + " method called!");
         logger.info("Engine injected!");

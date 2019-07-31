@@ -1,4 +1,4 @@
-package com.example.canyuva;
+package com.canyuva.springh2example;
 
 
 import org.springframework.stereotype.Component;

@@ -1,2 +1,1 @@
-# dependency-injection-java
-A simple example about DI
+# spring-boot-example

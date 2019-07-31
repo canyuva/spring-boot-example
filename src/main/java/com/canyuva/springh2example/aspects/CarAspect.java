@@ -1,4 +1,4 @@
-package com.example.canyuva.aspects;
+package com.canyuva.springh2example.aspects;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -13,7 +13,7 @@ public class CarAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(CarAspect.class);
 
-    @After("execution(* com.example.canyuva.CarCreator.selectCar(..))")
+    @After("execution(* com.canyuva.springh2example.CarCreator.selectCar(..))")
     public void afterSelectCar(JoinPoint joinPoint) {
         logger.info(joinPoint.getSignature().getName() + " method called!");
         logger.info("Car selected!");
