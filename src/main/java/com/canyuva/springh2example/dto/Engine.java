@@ -1,10 +1,15 @@
 package com.canyuva.springh2example.dto;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
-@Component
+@Entity
+@Table(name = "ENGINE")
 public class Engine {
+    @Id
+    @GeneratedValue
+    @Column(name="ENGINE_ID")
     private int id;
+    @Column(name="ENGINE_TYPE")
     private String type;
 
     public int getId() {

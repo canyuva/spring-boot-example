@@ -13,7 +13,7 @@ public class CarAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(CarAspect.class);
 
-    @After("execution(* com.canyuva.springh2example.repos.CarJdbcRepo.findAllCars(..))")
+    @After("execution(* com.canyuva.springh2example.repos.CarRepo.findAllCars(..))")
     public void afterSelectCar(JoinPoint joinPoint) {
         logger.info(joinPoint.getSignature().getName() + " method called!");
         logger.info("Car selected!");

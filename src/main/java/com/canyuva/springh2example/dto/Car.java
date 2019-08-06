@@ -1,11 +1,21 @@
 package com.canyuva.springh2example.dto;
 
-import org.springframework.stereotype.Component;
-@Component
+import javax.persistence.*;
+
+@Entity
+@Table(name = "CAR")
 public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="CAR_ID")
     private int id;
+    @Column(name="CAR_BRAND")
     private String brand;
+
+    @ManyToOne
+    @JoinColumn(name = "CAR_ENGINE_FK")
     private Engine engine;
+    @Column(name="CAR_YEAR")
     private int year;
 
     public int getId() {
